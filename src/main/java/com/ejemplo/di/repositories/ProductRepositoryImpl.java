@@ -2,13 +2,13 @@ package com.ejemplo.di.repositories;
 
 import com.ejemplo.di.models.Product;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Getter
-@Component
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
     private List<Product> products;
