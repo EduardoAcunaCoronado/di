@@ -11,10 +11,7 @@ public class ProductService {
     private ProductRepository productRepository = new ProductRepository();
 
     public List<Product> getProducts() {
-        return productRepository.getProducts().stream().map(p -> {
-            p.setPrice(p.getPrice() * 1.21);
-            return p;
-        }).collect(Collectors.toList());
+        return productRepository.getProducts().stream().map(p -> new Product(p.getId(), p.getName(), p.getPrice() * 1.21)).collect(Collectors.toList());
     }
 
     public Product getProduct(Long id) {
