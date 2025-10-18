@@ -2,16 +2,18 @@ package com.ejemplo.di.repositories;
 
 import com.ejemplo.di.models.Product;
 import lombok.Getter;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Primary
 @Getter
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private List<Product> products;
+    private final List<Product> products;
 
     public ProductRepositoryImpl() {
         this.products = Arrays.asList(
