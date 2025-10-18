@@ -2,17 +2,16 @@ package com.ejemplo.di.services;
 
 import com.ejemplo.di.models.Product;
 import com.ejemplo.di.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public List<Product> getProducts() {
         return productRepository.getProducts().stream().map(p -> {
