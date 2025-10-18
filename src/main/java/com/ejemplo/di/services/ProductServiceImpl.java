@@ -1,17 +1,21 @@
 package com.ejemplo.di.services;
 
 import com.ejemplo.di.models.Product;
-import com.ejemplo.di.repositories.ProductRepositoryImpl;
+import com.ejemplo.di.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class ProductServiceImpl implements ProductService {
 
-    private ProductRepositoryImpl productRepositoryImpl = new ProductRepositoryImpl();
+    @Autowired
+    private ProductRepository productRepository;
 
     public List<Product> getProducts() {
-        return productRepositoryImpl.getProducts().stream().map(p -> {
+        return productRepository.getProducts().stream().map(p -> {
             Double priceTax = p.getPrice() * 1.21;
             Product newProduct = p.clone();
             newProduct.setPrice(priceTax);
@@ -20,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Product getProduct(Long id) {
-        return productRepositoryImpl.getProduct(id);
+        return productRepository.getProduct(id);
     }
 
 }

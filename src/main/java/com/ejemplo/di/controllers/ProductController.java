@@ -1,7 +1,9 @@
 package com.ejemplo.di.controllers;
 
 import com.ejemplo.di.models.Product;
+import com.ejemplo.di.services.ProductService;
 import com.ejemplo.di.services.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +15,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
 
-    private ProductServiceImpl productServiceImpl = new ProductServiceImpl();
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
     public List<Product> getProducts() {
-        return productServiceImpl.getProducts();
+        return productService.getProducts();
     }
 
     @GetMapping("/{id}")
     public Product getProduct(@PathVariable Long id) {
-        return productServiceImpl.getProduct(id);
+        return productService.getProduct(id);
     }
 
 }
