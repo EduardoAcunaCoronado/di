@@ -9,8 +9,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Product {
+public class Product implements Cloneable {
     private Long id;
     private String name;
     private Double price;
+
+
+    @Override
+    public Product clone() {
+        try {
+            return (Product) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Product(this.getId(), this.getName(), this.getPrice());
+        }
+    }
 }
